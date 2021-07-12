@@ -51,7 +51,7 @@ export const Card = () => {
         id="print-area"
         style={{ maxWidth: portrait ? '350px' : '100%' }}
       >
-        <h1 style={{ textAlign: portrait ? 'center' : 'left' }}>WiFi Login</h1>
+        <h1 style={{ textAlign: portrait ? 'center' : 'left' }}>WiFi 登陆</h1>
 
         <div
           className="details"
@@ -65,12 +65,12 @@ export const Card = () => {
           />
 
           <div className="inputs">
-            <label>Network name</label>
+            <label>网络名称</label>
             <textarea
               id="ssid"
               type="text"
               maxLength="32"
-              placeholder="WiFi Network name"
+              placeholder="WiFi 网络名称"
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="none"
@@ -78,7 +78,7 @@ export const Card = () => {
               value={network.ssid}
               onChange={(e) => setNetwork({ ...network, ssid: e.target.value })}
             />
-            <label>Password</label>
+            <label>密码</label>
             <textarea
               id="password"
               type="text"
@@ -87,7 +87,7 @@ export const Card = () => {
                   portrait && network.password.length > 40 ? '5em' : 'auto',
               }}
               maxLength="63"
-              placeholder="Password"
+              placeholder="密码"
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="none"
@@ -104,16 +104,16 @@ export const Card = () => {
           <span role="img" aria-label="mobile-phone">
             📸📱
           </span>
-          Point your phone's camera at the QR Code to connect automatically
+          扫描二维码即可自动连接 WiFi
         </p>
       </fieldset>
 
       <div className="buttons">
         <button id="rotate" onClick={() => setPortrait(!portrait)}>
-          Rotate
+          旋转
         </button>
         <button id="print" onClick={onPrint}>
-          Print
+          打印
         </button>
       </div>
     </div>

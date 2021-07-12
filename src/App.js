@@ -9,18 +9,15 @@ function App() {
         <span role="img" aria-label="antenna-bars">
           📶
         </span>
-        &nbsp; WiFi Card
+        &nbsp; WiFi 卡片
       </h1>
 
       <p className="tag">
-        Print a simple card with your WiFi login details. Tape it to the fridge,
-        keep it in your wallet, etc.
+        打印一张带有 WiFi 登录详细信息的简易卡片，可以贴在冰箱上或者放进钱包里。
       </p>
 
       <p className="tag">
-        Your WiFi information is never sent to the server. No tracking,
-        analytics, or fingerprinting are used on this website. View the{' '}
-        <a href="https://github.com/bndw/wifi-card">source code</a>.
+      你的 WiFi 信息绝不会被发送到服务器上。本网站不使用跟踪、分析或其它定位，查看<a href="https://github.com/bndw/wifi-card">源代码</a>。
       </p>
 
       <Card />
