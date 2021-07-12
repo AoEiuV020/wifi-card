@@ -28,7 +28,7 @@ export const Card = () => {
 
   const onPrint = () => {
     if (network.password.length < 8) {
-      alert('Password must be at least 8 characters');
+      alert('密码必须至少8位数');
     } else {
       window.print();
     }
