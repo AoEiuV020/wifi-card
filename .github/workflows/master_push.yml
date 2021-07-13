@@ -70,9 +70,9 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@noreply.github.com"
           git checkout --orphan $BRANCH
-          if test "${GITHUB_ACTOR}" = "AoEiuV020"
+          if test ! -z "${{ secrets.CNAME }}"
           then
-            echo "wificard.aoeiuv020.com" > CNAME
+            echo "${{ secrets.CNAME }}" > CNAME
           fi
           git add .
           git status
