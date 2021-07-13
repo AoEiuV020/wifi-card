@@ -7,6 +7,16 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: init custom env
+        run: |
+            BUILD_NAME="${GITHUB_REPOSITORY#*/}"
+            BUILD_VERSION="$(date +'%Y%m%d%H%M%S')"
+            BUILD_NAME_WITH_VERSION="$BUILD_NAME-$BUILD_VERSION"
+            echo BUILD_NAME="$BUILD_NAME" >> .custom_env
+            echo BUILD_VERSION="$BUILD_VERSION" >> .custom_env
+            echo BUILD_NAME_WITH_VERSION="$BUILD_NAME_WITH_VERSION" >> .custom_env
+            cat .custom_env
+            cat .custom_env >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v2
       - name: prettier
@@ -23,8 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: ${{ env.BUILD_VERSION }}
+          release_name: ${{ env.BUILD_VERSION }}
           draft: true
           prerelease: false
       - name: Create Tar Ball
