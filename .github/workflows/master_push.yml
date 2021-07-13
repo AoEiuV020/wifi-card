@@ -70,7 +70,7 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@noreply.github.com"
           git checkout --orphan $BRANCH
-          if "${GITHUB_ACTOR}" = "AoEiuV020"
+          if test "${GITHUB_ACTOR}" = "AoEiuV020"
           then
             echo "wificard.aoeiuv020.com" > CNAME
           fi
