@@ -70,6 +70,10 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@noreply.github.com"
           git checkout --orphan $BRANCH
+          if "${GITHUB_ACTOR}" = "AoEiuV020"
+          then
+            echo "wificard.aoeiuv020.com" > CNAME
+          fi
           git add .
           git status
           git commit -m "Push to gh-pages"
