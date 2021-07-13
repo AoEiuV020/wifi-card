@@ -41,6 +41,12 @@ jobs:
           asset_path: ./wifi-card.tar.xz
           asset_name: wifi-card.tar.xz
           asset_content_type: application/x-gzip
+      - name: public release
+        uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }}
       - name: Push to gh-pages
         if: github.event_name == 'push'
         env:
