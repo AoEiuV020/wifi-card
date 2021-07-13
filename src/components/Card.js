@@ -51,7 +51,7 @@ export const Card = () => {
         id="print-area"
         style={{ maxWidth: portrait ? '350px' : '100%' }}
       >
-        <h1 style={{ textAlign: portrait ? 'center' : 'left' }}>WiFi 登陆</h1>
+        <h1 contenteditable="true" style={{ textAlign: portrait ? 'center' : 'left' }}>WiFi 登陆</h1>
 
         <div
           className="details"
@@ -65,7 +65,7 @@ export const Card = () => {
           />
 
           <div className="inputs">
-            <label>网络名称</label>
+            <label contenteditable="true">网络名称</label>
             <textarea
               id="ssid"
               type="text"
@@ -78,7 +78,7 @@ export const Card = () => {
               value={network.ssid}
               onChange={(e) => setNetwork({ ...network, ssid: e.target.value })}
             />
-            <label>密码</label>
+            <label contenteditable="true">密码</label>
             <textarea
               id="password"
               type="text"
@@ -100,7 +100,7 @@ export const Card = () => {
           </div>
         </div>
 
-        <p>
+        <p contenteditable="true">
           <span role="img" aria-label="mobile-phone">
             📸📱
           </span>
