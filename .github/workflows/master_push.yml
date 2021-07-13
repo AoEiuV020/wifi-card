@@ -53,6 +53,7 @@ jobs:
           cp -f ../.git/config ./.git/config
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@noreply.github.com"
+          git checkout --orphan $BRANCH
           git add .
           git status
           git commit -m "Push to gh-pages"
