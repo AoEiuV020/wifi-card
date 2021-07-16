@@ -17,7 +17,9 @@ function App() {
       </p>
 
       <p className="tag">
-      你的 WiFi 信息绝不会被发送到服务器上。本网站不使用跟踪、分析或其它定位，查看<a href="https://github.com/bndw/wifi-card">源代码</a>。
+        你的 WiFi
+        信息绝不会被发送到服务器上。本网站不使用跟踪、分析或其它定位，查看
+        <a href="https://github.com/caitouyun/wifi-card">源代码</a>。
       </p>
 
       <Card />
