@@ -104,7 +104,7 @@ export const Card = () => {
           <span role="img" aria-label="mobile-phone">
             📸📱
           </span>
-          扫描二维码即可自动连接 WiFi
+          扫描二维码即可自动连接 WiFi (不支持微信扫码)
         </p>
       </fieldset>
 
