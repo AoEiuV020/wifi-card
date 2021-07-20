@@ -35,7 +35,7 @@ function App() {
 
       <p className="tag">
         {t('desc.privacy')}{' '}
-        <a href="https://github.com/bndw/wifi-card">{t('desc.source')}</a>.
+        <a href="https://github.com/AoEiuV020/wifi-card">{t('desc.source')}</a>.
       </p>
 
       <p className="tag">
