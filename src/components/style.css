@@ -17,6 +17,10 @@
   margin-bottom: 1em;
 }
 
+.hidden {
+  display: none;
+}
+
 textarea {
   background-color: #fff;
   border: solid 1px #ddd;
@@ -56,9 +60,16 @@ button#rotate {
   #print-area textarea {
     border: none;
   }
+  .no-print {
+    display: none;
+  }
   #print-area {
     position: absolute;
     left: 0;
     top: 0;
   }
+}
+
+hr {
+  margin-top: 25px;
 }

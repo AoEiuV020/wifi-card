@@ -1,5 +1,6 @@
 import QRCode from 'qrcode.react';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './style.css';
 
 export const Card = () => {
@@ -7,10 +8,12 @@ export const Card = () => {
   const [qrvalue, setQrvalue] = useState('');
   const [network, setNetwork] = useState({
     ssid: '',
+    encryptionMode: 'WPA',
     password: '',
+    hidePassword: false,
   });
   const [portrait, setPortrait] = useState(false);
-
+  const { t } = useTranslation();
   const escape = (v) => {
     const needsEscape = ['"', ';', ',', ':', '\\'];
 
@@ -27,10 +30,24 @@ export const Card = () => {
   };
 
   const onPrint = () => {
+<<<<<<< HEAD
     if (network.password.length < 8) {
       alert('密码必须至少8位数');
+=======
+    if (network.ssid.length > 0) {
+      if (network.password.length < 8 && network.encryptionMode === 'WPA') {
+        alert(t('wifi.alert.password.8'));
+      } else if (
+        network.password.length < 5 &&
+        network.encryptionMode === 'WEP'
+      ) {
+        alert(t('wifi.alert.password.length.5'));
+      } else {
+        window.print();
+      }
+>>>>>>> bndw/master
     } else {
-      window.print();
+      alert(t('wifi.alert.name'));
     }
   };
 
@@ -42,7 +59,7 @@ export const Card = () => {
 
     const ssid = escape(network.ssid);
     const password = escape(network.password);
-    setQrvalue(`WIFI:T:WPA;S:${ssid};P:${password};;`);
+    setQrvalue(`WIFI:T:${network.encryptionMode};S:${ssid};P:${password};;`);
   }, [network]);
 
   return (
@@ -51,7 +68,9 @@ export const Card = () => {
         id="print-area"
         style={{ maxWidth: portrait ? '350px' : '100%' }}
       >
-        <h1 contenteditable="true" style={{ textAlign: portrait ? 'center' : 'left' }}>WiFi 登陆</h1>
+        <h1 contenteditable="true" style={{ textAlign: portrait ? 'center' : 'left' }}>
+          {t('wifi.login')}
+        </h1>
 
         <div
           className="details"
@@ -65,12 +84,12 @@ export const Card = () => {
           />
 
           <div className="inputs">
-            <label contenteditable="true">网络名称</label>
+            <label contenteditable="true">{t('wifi.name')}</label>
             <textarea
               id="ssid"
               type="text"
               maxLength="32"
-              placeholder="WiFi 网络名称"
+              placeholder={t('wifi.name.placeholder')}
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="none"
@@ -78,42 +97,112 @@ export const Card = () => {
               value={network.ssid}
               onChange={(e) => setNetwork({ ...network, ssid: e.target.value })}
             />
-            <label contenteditable="true">密码</label>
+            <label contenteditable="true"
+              className={`
+                ${network.hidePassword && 'no-print hidden'}
+                ${network.encryptionMode === 'nopass' && 'hidden'}
+              `}
+            >
+              {t('wifi.password')}
+            </label>
             <textarea
               id="password"
               type="text"
+              className={`
+                ${network.hidePassword && 'no-print hidden'}
+                ${network.encryptionMode === 'nopass' && 'hidden'}
+              `}
               style={{
                 height:
                   portrait && network.password.length > 40 ? '5em' : 'auto',
               }}
               maxLength="63"
-              placeholder="密码"
+              placeholder={t('wifi.password.placeholder')}
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="none"
               spellCheck="false"
               value={network.password}
-              onChange={(e) =>
-                setNetwork({ ...network, password: e.target.value })
-              }
+              onChange={(e) => {
+                setNetwork({ ...network, password: e.target.value });
+              }}
             />
+
+            <div className="no-print">
+              <input
+                type="checkbox"
+                id="hide-password-checkbox"
+                className={network.encryptionMode === 'nopass' ? 'hidden' : ''}
+                onChange={() =>
+                  setNetwork({
+                    ...network,
+                    hidePassword: !network.hidePassword,
+                  })
+                }
+              />
+              <label
+                for="hide-password-checkbox"
+                className={network.encryptionMode === 'nopass' ? 'hidden' : ''}
+              >
+                {t('wifi.password.hide')}
+              </label>
+            </div>
+
+            <div className="no-print">
+              <label>{t('wifi.password.encryption')}:</label>
+              <input
+                type="radio"
+                name="encrypt-select"
+                id="encrypt-none"
+                value="nopass"
+                onChange={(e) => {
+                  setNetwork({
+                    ...network,
+                    encryptionMode: e.target.value,
+                    password: '',
+                  });
+                }}
+              />
+              <label for="encrypt-none">None</label>
+              <input
+                type="radio"
+                name="encrypt-select"
+                id="encrypt-wpa-wpa2"
+                value="WPA"
+                onChange={(e) =>
+                  setNetwork({ ...network, encryptionMode: e.target.value })
+                }
+                defaultChecked
+              />
+              <label for="encrypt-wpa-wpa2">WPA/WPA2</label>
+              <input
+                type="radio"
+                name="encrypt-select"
+                id="encrypt-wep"
+                value="WEP"
+                onChange={(e) =>
+                  setNetwork({ ...network, encryptionMode: e.target.value })
+                }
+              />
+              <label for="encrypt-wep">WEP</label>
+            </div>
           </div>
         </div>
-
+        <hr />
         <p contenteditable="true">
           <span role="img" aria-label="mobile-phone">
             📸📱
           </span>
-          扫描二维码即可自动连接 WiFi (不支持微信扫码)
+          {t('wifi.tip')}
         </p>
       </fieldset>
 
       <div className="buttons">
         <button id="rotate" onClick={() => setPortrait(!portrait)}>
-          旋转
+          {t('button.rotate')}
         </button>
         <button id="print" onClick={onPrint}>
-          打印
+          {t('button.print')}
         </button>
       </div>
     </div>

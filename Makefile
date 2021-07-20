@@ -14,6 +14,14 @@ dev:
 	yarn
 	yarn start
 
+.PHONY: fmt
+fmt:
+	npx prettier --check ./src
+
+.PHONY: fmt.write
+fmt.write:
+	npx prettier --write ./src
+
 .PHONY: run
 run:
 	docker run --rm -p 8080:80 $(TAG_LATEST)

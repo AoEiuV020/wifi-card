@@ -1,23 +1,41 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card } from './components/Card';
 import './style.css';
+import logo from '../src/images/wifi.png';
 
 function App() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="App">
       <h1>
-        <span role="img" aria-label="antenna-bars">
-          📶
-        </span>
-        &nbsp; WiFi 卡片
+        <img alt="icon" src={logo} width="32" height="32" />
+        &nbsp; {t('title')}
       </h1>
 
-      <p className="tag">
-        打印一张带有 WiFi 登录详细信息的简易卡片，可以贴在冰箱上或者放进钱包里。
-      </p>
+      <div>
+        <label>{t('select')}</label>
+        <select
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
+          <option value="zh-CN">简体中文</option>
+          <option value="en-US">en-US</option>
+          <option value="es">es</option>
+          <option value="pt">Português</option>
+          <option value="ja">日本語</option>
+          <option value="ru-RU">Русский</option>
+          <option value="uk-UA">Українська</option>
+          <option value="nl-NL">Nederlands</option>
+        </select>
+      </div>
+
+      <p className="tag">{t('desc.use')}</p>
 
       <p className="tag">
-      你的 WiFi 信息绝不会被发送到服务器上。本网站不使用跟踪、分析或其它定位，查看<a href="https://github.com/AoEiuV020/wifi-card">源代码</a>。
+        {t('desc.privacy')}{' '}
+        <a href="https://github.com/bndw/wifi-card">{t('desc.source')}</a>.
       </p>
 
       <p className="tag">
