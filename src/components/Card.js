@@ -30,10 +30,6 @@ export const Card = () => {
   };
 
   const onPrint = () => {
-<<<<<<< HEAD
-    if (network.password.length < 8) {
-      alert('密码必须至少8位数');
-=======
     if (network.ssid.length > 0) {
       if (network.password.length < 8 && network.encryptionMode === 'WPA') {
         alert(t('wifi.alert.password.8'));
@@ -45,7 +41,6 @@ export const Card = () => {
       } else {
         window.print();
       }
->>>>>>> bndw/master
     } else {
       alert(t('wifi.alert.name'));
     }
